@@ -2,8 +2,8 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     oidc: {
-      clientId: '0oa1ddcipQGRBMQ815d6',  // Tool SPA App
-      issuer: 'https://erikmanor.okta.com/oauth2/aus1d9em7Auo2oFBY5d6',
+      clientId: {CLIENT_ID},
+      issuer: 'https://{OKTA_DOMAIN}/oauth2/default',
       redirectUri: window.location.origin + '/login/callback',
       scopes: ['openid', 'profile', 'email', 'offline_access'],
       responseType: ['token', 'id_token'],

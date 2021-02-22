@@ -12,12 +12,6 @@ const Home = () => {
     const loginCustomWidget = async () => history.push('login');
     const logout = async () => oktaAuth.signOut('/');
 
-    //using iFrame
-    const sessionShare = new SessionShare(authState, 'http://localhost:3002', 'http://localhost:3002');
-    //new tab
-    // const sessionShare = new SessionShare(authState, 'http://localhost:3002');
-
-    
     
     if(authState.isPending) {
       return <div>Loading...</div>;
@@ -48,9 +42,14 @@ const Home = () => {
 
     const sendSession = () => {
       //opens in hidden IFrame then redirects this window
+      const sessionShare = new SessionShare(authState, 'http://localhost:3002', 'http://localhost:3002');
       sessionShare.sendSession('iframe_redir', 'http://localhost:3002/receivesession');
+    }
+
+    const sendSessionTab = () => {
       //opens in new tab
-      // sessionShare.sendSession('New Tab', 'http://localhost:3002/receivesession');
+      const sessionShareTab = new SessionShare(authState, 'http://localhost:3002');
+      sessionShareTab.sendSession('New Tab', 'http://localhost:3002/receivesessiontab');
     }
 
     return (
@@ -59,7 +58,10 @@ const Home = () => {
         <p>{userInfo.name}</p>
         <button onClick={logout}>Logout</button>
         <br/>
-        <button onClick={sendSession}>Open</button>
+        <button onClick={sendSession}>Copy Session to another App In Current Tab</button>
+        <br/>
+        <button onClick={sendSessionTab}>Copy Session to another App in New Tab</button>
+
         <iframe name="iframe_redir" title="iframe_redir" 
           height="0px" width="0px" style={{display:'none'}}></iframe>
       </div>

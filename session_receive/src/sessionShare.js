@@ -51,12 +51,12 @@ class SessionReceive {
         this.oktaAuth.tokenManager.setTokens({accessToken: tokens.accessToken, 
                                         idToken: tokens.idToken, 
                                         refreshToken: tokens.refreshToken});
-        
+    
         if (this.redirectURL) {
             window.opener.postMessage(MSG_CLOSE, this.postMsgURL);
             window.location.replace(this.redirectURL);
         } else {
-            window.parent.postMessage(MSG_CLOSE, this.postMsgURL);
+            window.opener.postMessage(MSG_CLOSE, this.postMsgURL);
         }
     }
 
@@ -65,7 +65,7 @@ class SessionReceive {
         if (this.redirectURL) {
             window.opener.postMessage(MSG_SEND, this.postMsgURL);
         } else {
-            window.parent.postMessage(MSG_SEND, this.postMsgURL);
+            window.opener.postMessage(MSG_SEND, this.postMsgURL);
         }
     }
 

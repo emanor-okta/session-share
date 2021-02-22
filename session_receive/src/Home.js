@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
-import { useHistory } from 'react-router-dom';
 import { useOktaAuth } from '@okta/okta-react';
 
 
 const Home = () => {
     const { oktaAuth, authState } = useOktaAuth();
-    const history = useHistory();
-
+    
     const [userInfo, setUserInfo] = useState({});
     const [tokens, setTokens] = useState({});
     
@@ -26,9 +24,6 @@ const Home = () => {
         console.log(err);
       });
     }
-
-    // console.log('AUTH----------')
-    // console.log(authState) 
 
     if(!authState.isAuthenticated) {
       return <div>No Tokens...</div>;

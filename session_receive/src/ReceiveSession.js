@@ -3,13 +3,18 @@ import { useOktaAuth } from '@okta/okta-react';
 
 import { SessionReceive } from './sessionShare';
 
-export default function ReceiveSession() {
+export default function ReceiveSession({url}) {
     const { oktaAuth } = useOktaAuth();
-    //receive from iFrame
-    const sessionReceive = new SessionReceive(oktaAuth, 'http://localhost:3001');
-    //receive new tab
-    // const sessionReceive = new SessionReceive(oktaAuth, 'http://localhost:3001', 'http://localhost:3002');
+    var sessionReceive;
 
+    if (url === 'receivesession') {
+        //receive from iFrame
+        sessionReceive = new SessionReceive(oktaAuth, 'http://localhost:3001');
+    } else {
+        //receive new tab
+        sessionReceive = new SessionReceive(oktaAuth, 'http://localhost:3001', 'http://localhost:3002');
+    }
+    
     var flag = 5;
     
     useEffect(() => {
