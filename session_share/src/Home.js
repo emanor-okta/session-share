@@ -12,12 +12,14 @@ const Home = () => {
     const loginCustomWidget = async () => history.push('login');
     const logout = async () => oktaAuth.signOut('/');
 
-    
-    if(authState.isPending) {
+console.log(authState);    
+    //if(authState.isPending) {
+    if (!authState) {
       return <div>Loading...</div>;
     }
   
-    if(!authState.isAuthenticated) {
+    //if(!authState.isAuthenticated) {
+    if (authState && !authState.isAuthenticated) { 
       return (
         <div>
           <h3>Not Logged in yet</h3>

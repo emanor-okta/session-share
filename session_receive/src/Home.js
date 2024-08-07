@@ -25,7 +25,7 @@ const Home = () => {
       });
     }
 
-    if(!authState.isAuthenticated) {
+    if(!authState || !authState.isAuthenticated) {
       return <div>No Tokens...</div>;
     }
     
